@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html>
+<head>
+<link href="https://fonts.googleapis.com/css2?family=Titillium+Web:wght@400;700;900&display=swap" rel="stylesheet">
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+
+<style>
+* {font-family: 'Titillium Web', sans-serif;}
+.container {Width:500px; margin:0 auto; position:relative}
+input.text {padding:10px; margin: 10px 0; width:100%; display:block}
+input:hover {cursor:pointer}
+</style>
+
+<script>
+function validaValores(campoId) {
+
+  var numeroMeses = document.getElementById("inputMeses").value;
+
+  var volInputInformadas = document.getElementById(campoId).value
+  var volInputInformadasSplit = volInputInformadas.split(",");
+
+  if (volInputInformadasSplit.length != numeroMeses) {
+    alert("Informe um "+ campoId +" correspondente ao total de meses!");
+    return;
+  }
+
+    for(var i = 0; i < volInputInformadasSplit.length; i++) {
+    if(isNaN(volInputInformadasSplit[i])){
+      alert("Informe um número inteiro para "+ campoId +"!");
+      return;
+    }
+  }
+
+}
+</script>
+</head>
+
+<body>
+<div class="container">
+
+<h2>Informe os dados do seu plano</h2>
+<form action="/model" method="POST" enctype="multipart/form-data">
+<label>Qual o investimento?</label>
+  <input class="text" id="inputInvestimento" type="number" name="inputInvestimento" value="1245124" placeholder="Qual o investimento?" required /><br>
+<label>Quantos Meses?</label>
+  <input class="text" id="inputMeses" type="number" name="inputMeses" value="4" placeholder="Quantos Meses?" required /><br>
+
+<br><br>
+<label>Qual o investimento mínimo por plataforma/mês?</label>
+  <input class="text" id="inputValorMinimo" type="number" name="inputValorMinimo" min="0" value="0" placeholder="Qual o investimento mínimo por plataforma/mês?" required /><br>
+
+  <h4>Quais Plataformas?</h4>
+<input type="checkbox" id="Facebook" name="scales" checked><label for="Facebook">Facebook</label>
+
+<br>
+<input type="checkbox" id="Instagram" name="scales" checked><label for="Instagram">Instagram</label>
+
+<br>
+<input type="checkbox" id="Google" name="scales" checked><label for="Google">Google Search</label>
+
+<br>
+<input type="checkbox" id="Display" name="scales" checked><label for="Display">Google Display</label>
+
+<br>
+
+<h4>Qual o tamanho do seu público?</h4>
+
+  <label>Qual o volume de buscas por mês? (separado por vírgula)</label>
+  <input onblur="validaValores('inputBuscasMensais')" class="text" id="inputBuscasMensais" type="text" name="inputBuscasMensais" min="0" value="1444,1435,1623,1180" placeholder="Qual o volume de buscas?" required /><br>
+
+  <label>Qual o volume de impressões estimado no Display?</label>
+  <input class="text" id="inputImpressoesDisplay" type="text" name="inputImpressoesDisplay" min="0" value="1421180" placeholder="Informe os valores"  required /><br>
+
+  <label>Qual o total de usuários estimado no Facebook e Instagram?</label>
+  <input class="text" id="inputPublicoFacebook" type="text" name="inputPublicoFacebook" min="0" value="144480" placeholder="Informe os valores"  required /><br>
+
+
+  <h4>Quais os dados de CPC?</h4>
+
+    <label>Facebook separado por vírgulas (para os centavos use pontos!)</label>
+    <input onblur="validaValores('inputCPCsMensaisFb')" class="text" id="inputCPCsMensaisFb" type="text" name="inputCPCsMensaisFb" min="0" value="1.44,1.35,1.23,1.80" placeholder="Informe os valores" required /><br>
+
+    <label>Informe o CPC Instagram separado por vírgulas (para os centavos use pontos!)</label>
+    <input onblur="validaValores('inputCPCsMensaisIg')" class="text" id="inputCPCsMensaisIg" type="text" name="inputCPCsMensaisIg" min="0" value="1.44,1.35,1.23,1.80" placeholder="Informe os valores" required /><br>
+
+
+    <label>Informe o CPC Display separado por vírgulas (para os centavos use pontos!)</label>
+    <input onblur="validaValores('inputCPCsMensaisDs')" class="text" id="inputCPCsMensaisDs" type="text" name="inputCPCsMensaisDs" min="0" value="1.44,1.35,1.23,1.80" placeholder="Informe os valores" required /><br>
+
+    <label>Informe o CPC Google separado por vírgulas (para os centavos use pontos!)</label>
+    <input onblur="validaValores('inputCPCsMensaisG')" class="text" id="inputCPCsMensaisG" type="text" name="inputCPCsMensaisG" min="0" value="1.44,1.35,1.23,1.80" placeholder="Informe os valores" required /><br>
+
+      <h4>Quais os dados de Tx. Conv.?</h4>
+
+        <label>Informe a Tx. Conv. Facebook separado por vírgulas (ppara os % não use o sinal e use pontos ao invés de virgula!)</label>
+        <input onblur="validaValores('inputTxConvsMensaisFb')" class="text" id="inputTxConvsMensaisFb" type="text" name="inputTxConvsMensaisFb" min="0" value="1.44,1.35,1.23,1.80" placeholder="Informe os valores" required /><br>
+
+        <label>Informe a Tx. Conv. Instagram separado por vírgulas (para os % não use o sinal e use pontos ao invés de virgula!))</label>
+        <input onblur="validaValores('inputTxConvsMensaisIg')" class="text" id="inputTxConvsMensaisIg" type="text" name="inputTxConvsMensaisIg" min="0" value="1.44,1.35,1.23,1.80" placeholder="Informe os valores" required /><br>
+
+
+        <label>Informe a Tx. Conv. Display separado por vírgulas (para os % não use o sinal e use pontos ao invés de virgula!))</label>
+        <input onblur="validaValores('inputTxConvsMensaisDs')" class="text" id="inputTxConvsMensaisDs" type="text" name="inputTxConvsMensaisDs" min="0" value="1.44,1.35,1.23,1.80" placeholder="Informe os valores" required /><br>
+
+        <label>Informe a Tx. Conv. Google separado por vírgulas (para os % não use o sinal e use pontos ao invés de virgula!))</label>
+        <input onblur="validaValores('inputTxConvsMensaisG')" class="text" id="inputTxConvsMensaisG" type="text" name="inputTxConvsMensaisG" min="0" value="1.44,1.35,1.23,1.80" placeholder="Informe os valores" required /><br>
+
+
+  <input type="submit" value="ENVIAR" />
+</form>
+</div>
+<div class="container">
+<a href="/sobre">Sobre o Projeto</a>
+</div>
+</body>
+</html>
